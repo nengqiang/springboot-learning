@@ -10,3 +10,9 @@
  Choose one of them when you use it. When springboot integrates mybatis, you can use the mybatis-generator plugin 
  to automatically generate the dao layer entity class, mapper file and xml file.  
  * &nbsp;&nbsp; This module uses the third form, but contains the configuration files needed for the three forms.
+ 
+ ### springboot-redis module
+ * Springboot integrates redis  
+ * &nbsp;&nbsp; Redis is a key-value storage system. Similar to Memcached, it supports storing more value types, including string, 
+ list, set, zset (sorted set), and hash (hash typeName). These data types support push/pop, add/remove, 
+ and intersection set and difference sets and richer operations, and these operations are atomic.
