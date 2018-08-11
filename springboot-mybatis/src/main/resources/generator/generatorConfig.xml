@@ -5,14 +5,14 @@
 <generatorConfiguration>
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <!-- 生成Example文件 -->
-        <plugin typeName="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
             <property name="searchString" value="Example$" />
             <property name="replaceString" value="Criteria" />
         </plugin>
 
-        <plugin typeName="org.mybatis.generator.plugins.RowBoundsPlugin" />
-        <plugin typeName="org.mybatis.generator.plugins.ToStringPlugin" />
-        <plugin typeName="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
 
         <commentGenerator>
             <property name="suppressDate" value="true"/>
@@ -36,7 +36,7 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator typeName="XMLMAPPER" targetPackage="com.hnq.study.dao.mapper" targetProject="MAVEN">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hnq.study.dao.mapper" targetProject="MAVEN">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
