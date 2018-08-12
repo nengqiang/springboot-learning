@@ -18,10 +18,10 @@ import static com.hnq.study.bean.Apple.Type.Huang_Yuanshuai;
 import static com.hnq.study.bean.Apple.Type.Red_Star;
 import static com.hnq.study.bean.Apple.Type.Kokomo;
 import static com.hnq.study.bean.Apple.Type.Gala;
-import static com.hnq.study.bean.Apple.originArea.BoHai;
-import static com.hnq.study.bean.Apple.originArea.Northwest;
-import static com.hnq.study.bean.Apple.originArea.YelloRiver;
-import static com.hnq.study.bean.Apple.originArea.Southwest;
+import static com.hnq.study.bean.Apple.OriginArea.BoHai;
+import static com.hnq.study.bean.Apple.OriginArea.Northwest;
+import static com.hnq.study.bean.Apple.OriginArea.YelloRiver;
+import static com.hnq.study.bean.Apple.OriginArea.Southwest;
 
 /**
  * @author henengqiang

@@ -76,13 +76,9 @@ public class Apple implements Serializable {
         public String getText() {
             return text;
         }
-
-        public void setText(String text) {
-            this.text = text;
-        }
     }
 
-    public enum originArea {
+    public enum OriginArea {
         /**
          * 渤海湾产区包括胶东半岛、山东产区、辽宁产区、河北产区和北京、天津两市，是中国苹果栽培最早、产量和面积最大、生产水平最高的产区。
          */
@@ -103,16 +99,12 @@ public class Apple implements Serializable {
 
         private String text;
 
-        originArea(String text) {
+        OriginArea(String text) {
             this.text = text;
         }
 
         public String getText() {
             return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
         }
     }
 
