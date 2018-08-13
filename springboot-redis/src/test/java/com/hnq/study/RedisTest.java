@@ -92,6 +92,7 @@ public class RedisTest {
 
     @Test
     public void findTheAppleListWePutTest() {
+
         String key = "AppleList";
         try {
             List valueList = redisUtils.lRange(key, 0, -1);
@@ -107,6 +108,7 @@ public class RedisTest {
             System.err.println("从redis读取数据失败");
             e.printStackTrace();
         }
+
     }
 
 }
