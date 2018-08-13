@@ -16,3 +16,8 @@
  * &nbsp;&nbsp; Redis is a key-value storage system. Similar to Memcached, it supports storing more value types, including string, 
  list, set, zset (sorted set), and hash (hash typeName). These data types support push/pop, add/remove, 
  and intersection set and difference sets and richer operations, and these operations are atomic.
+ 
+  ### springboot-rocketmq-producer module  
+  ### springboot-rocketmq-consumer module
+  * Springboot integrates RocketMQ
+  * Apache RocketMQ™ is an open source distributed messaging and streaming data platform.

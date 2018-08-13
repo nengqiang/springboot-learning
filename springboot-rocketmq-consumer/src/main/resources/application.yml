@@ -1,0 +1,8 @@
+rocketmq:
+  consumer:
+    namesrvAddr: 192.168.5.243:9876
+    groupName: testGroup
+    topic: test
+    tag: He
+    consumeThreadMin: 20
+    consumeThreadMax: 64
