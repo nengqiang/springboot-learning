@@ -27,7 +27,8 @@ public class MessageListener implements MessageListenerConcurrently {
             }
             return CONSUME_SUCCESS;
         } catch (Exception e) {
-            if (msgs.get(0).getReconsumeTimes() < 1) {
+            // 重试一次，如果仍然失败则抛弃该消息并处理失败信息
+            if (msgs.get(0).getReconsumeTimes() <= 1) {
                 return RECONSUME_LATER;
             } else {
                 e.printStackTrace();

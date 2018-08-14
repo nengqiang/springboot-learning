@@ -1,7 +1,7 @@
 package com.hnq.study;
 
 import com.alibaba.fastjson.JSON;
-import com.hnq.study.bean.Apple;
+import com.hnq.study.model.Apple;
 import com.hnq.study.redis.RedisUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,15 +13,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.hnq.study.bean.Apple.Type.Red_Fuji;
-import static com.hnq.study.bean.Apple.Type.Huang_Yuanshuai;
-import static com.hnq.study.bean.Apple.Type.Red_Star;
-import static com.hnq.study.bean.Apple.Type.Kokomo;
-import static com.hnq.study.bean.Apple.Type.Gala;
-import static com.hnq.study.bean.Apple.OriginArea.BoHai;
-import static com.hnq.study.bean.Apple.OriginArea.Northwest;
-import static com.hnq.study.bean.Apple.OriginArea.YelloRiver;
-import static com.hnq.study.bean.Apple.OriginArea.Southwest;
+import static com.hnq.study.model.Apple.Type.Red_Fuji;
+import static com.hnq.study.model.Apple.Type.Huang_Yuanshuai;
+import static com.hnq.study.model.Apple.Type.Red_Star;
+import static com.hnq.study.model.Apple.Type.Kokomo;
+import static com.hnq.study.model.Apple.Type.Gala;
+import static com.hnq.study.model.Apple.OriginArea.BoHai;
+import static com.hnq.study.model.Apple.OriginArea.Northwest;
+import static com.hnq.study.model.Apple.OriginArea.YelloRiver;
+import static com.hnq.study.model.Apple.OriginArea.Southwest;
 
 /**
  * @author henengqiang
