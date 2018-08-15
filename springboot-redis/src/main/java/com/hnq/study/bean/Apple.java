@@ -1,4 +1,4 @@
-package com.hnq.study.model;
+package com.hnq.study.bean;
 
 import java.io.Serializable;
 

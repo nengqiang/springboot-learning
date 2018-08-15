@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="dataSourceCluster" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.5.241:3306/springboot_cluster" />
+		<property name="username" value="root" />
+		<property name="password" value="dashu0701" />
+		<property name="initialSize" value="3" />
+		<property name="maxActive" value="30" />
+		<property name="maxIdle" value="5" />
+		<property name="minIdle" value="3" />
+		<property name="maxWait" value="600000" />
+		<!-- 一个查询10分钟内没有返回，自动放弃 -->
+		<property name="validationQuery" value="SELECT 1" />
+		<!-- 数据库连接可用性测试语句 -->
+		<property name="testOnBorrow" value="true" />
+		<!-- 每次获取一个连接的时候，验证一下连接是否可用，语句在validationQuery里面 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 自动处理连接未关闭的问题，Setting this to true can recover db connections from poorly written applications which fail to close a connection. -->
+		<property name="removeAbandonedTimeout" value="300" />
+	</bean>
+
+	<bean id="transactionManagerCluster" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource" ref="dataSourceCluster" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManagerCluster" />
+
+	<bean id="sqlSessionFactoryCluster" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSourceCluster" />
+		<property name="mapperLocations" value="classpath*:sqlmap/cluster/*.xml"/>
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryCluster"/>
+		<property name="basePackage" value="com.hnq.study.dao.mapper.cluster"/>
+	</bean>
+
+</beans>

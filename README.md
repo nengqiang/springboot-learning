@@ -37,6 +37,11 @@
   &nbsp;&nbsp; Registry: The Central Directory Service for Registry Service Registration and Discovery is called the Service Registry.   
   &nbsp;&nbsp; Monitor: The log service of the number of calls and the time of calling the Monitor Statistics Service is called the Service Monitoring Center. 
   * &nbsp;&nbsp; Since the dubbo provider and the consumer profile are in the same project, the provider and the consumer cannot start at the same time. 
-  When the provider is started separately, the service is registered to the service center; when the consumer is started separately, the service is registered to the service center. Since the consumer imports the provider module dependency, the consumer can use the corresponding service of the service center.
+  When the provider is started separately, the service is registered to the service center; 
+  when the consumer is started separately, the service is registered to the service center. 
+  Since the consumer imports the provider module dependency, the consumer can use the corresponding service of the service center.
+  
+  ### springboot-mybatis-muti-datasource
+  * &nbsp;&nbsp; Use of master-slave database
   
   
