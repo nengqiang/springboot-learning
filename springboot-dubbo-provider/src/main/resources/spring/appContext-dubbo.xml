@@ -4,7 +4,7 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<dubbo:application name="springboot-dubbo-provider"/>
+	<dubbo:application name="springboot-dubbo"/>
 
 	<dubbo:monitor protocol="registry" />
 
@@ -19,10 +19,5 @@
 
     <!-- 注册到dubbo -->
     <dubbo:service interface = "com.hnq.study.service.ICityService" ref = "cityServiceImpl"/>
-
-
-    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <!--<dubbo:reference interface="com.hnq.study.service.ICityService"/>-->
-
 
 </beans>

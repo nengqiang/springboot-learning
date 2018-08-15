@@ -75,6 +75,7 @@
             <version>${logstash.version}</version>
         </dependency>
 
+        <!-- httpClient 访问网址依赖 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
