@@ -1,0 +1,55 @@
+.box {
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    text-align: center;
+    border: solid gray 1px;
+}
+
+.input-wrapper {
+    width: 475px;
+    height: 35px;
+    margin: 30px auto;
+}
+
+.input-form {
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+    float: left;
+    outline: none;
+    border-radius: 5px;
+}
+
+#btn-search {
+    width: 60px;
+    height: 35px;
+    color: white;
+    font-size: 20px;
+    background-color: #00B83F;
+    float: right;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#btn-search:focus {
+    outline: none;
+}
+
+.chart-wrapper {
+    width: 85%;
+    height: auto;
+    margin: 10px auto;
+}
+
+.two-chart-wrapper {
+    display: inline;
+}
+
+.chart-container {
+    display: inline-block;
+    width: 49%;
+    height: 300px;
+}

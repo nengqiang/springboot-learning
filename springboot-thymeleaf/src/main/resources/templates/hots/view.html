@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>BaiduHotChart</title>
+        <link rel="shortcut icon" href="/images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="/css/view.css">
+    </head>
+    <body>
+        <div class="box">
+            <h1 th:text="${hotsModel.title}"></h1>
+            <div class="input-wrapper">
+                <input class="input-form" id="idStart" placeholder="idStart"/>
+                <input class="input-form" id="idEnd" placeholder="idEnd"/>
+                <input id="btn-search" type="button" value="搜索"/>
+            </div>
+            <div class="chart-wrapper">
+                <div class="two-chart-wrapper">
+                    <div class="chart-container" id="container1"></div>
+                    <div class="chart-container" id="container2"></div>
+                </div>
+                <div class="two-chart-wrapper">
+                    <div class="chart-container" id="container3"></div>
+                    <div class="chart-container" id="container4"></div>
+                </div>
+                <div class="two-chart-wrapper">
+                    <div class="chart-container" id="container5"></div>
+                    <div class="chart-container" id="container6"></div>
+                </div>
+                <div class="two-chart-wrapper">
+                    <div class="chart-container" id="container7"></div>
+                    <div class="chart-container" id="container8"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/echarts.common.min.js"></script>
+    <script src="/js/view.js"></script>
+</html>
