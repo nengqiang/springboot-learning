@@ -10,17 +10,12 @@ public class AbstractController {
 
     public Answer<?> renderError(String msg) {
         Answer<Object> answer = new Answer<>();
-        answer.setCode(1);
-        answer.setMsg(msg);
-        return answer;
+        return answer.setCode(1).setMsg(msg);
     }
 
     public Answer<?> renderAnswer(Object result) {
         Answer<Object> answer = new Answer<>();
-        answer.setCode(0);
-        answer.setMsg("操作完成");
-        answer.setResult(result);
-        return answer;
+        return answer.setCode(0).setMsg("操作完成").setResult(result);
     }
 
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnq.study.dao.mapper.ext.UserExtMapper">
+    <resultMap id="UserResultMap" type="com.hnq.study.dao.domain.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+        <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+        <collection property="roles" ofType="com.hnq.study.dao.domain.Role">
+            <id column="id" jdbcType="INTEGER" property="id" />
+            <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+            <result column="user_id" jdbcType="VARCHAR" property="userId" />
+            <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+            <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+            <collection property="permissions" ofType="com.hnq.study.dao.domain.Permission">
+                <id column="id" jdbcType="INTEGER" property="id" />
+                <result column="permission" jdbcType="VARCHAR" property="permission" />
+                <result column="role_id" jdbcType="INTEGER" property="roleId" />
+                <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+                <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findByUserName" parameterType="String" resultMap="UserResultMap">
+        SELECT * FROM s_user u
+        INNER JOIN s_role r ON u.id = r.user_id
+        INNER JOIN s_permission p ON r.id = p.role_id
+        AND u.user_name=#{userName}
+    </select>
+
+</mapper>

@@ -18,7 +18,7 @@
 #    poolPreparedStatements: true
 #    maxOpenPreparedStatements: 20
 #
-## 配置 MapperScannerConfigure
+## 配置扫描 xml 文件
 #mybatis:
-#  mapper-locations: classpath:sqlmap/*.xml
+#  mapper-locations: classpath:sqlmap/**/*.xml
 #  type-aliases-package: com.hnq.study.dao.domain
