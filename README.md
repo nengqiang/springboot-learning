@@ -78,13 +78,16 @@
    * Run As: Allows one user to pretend to be accessed as another user (if they allow);
    * Remember Me: Remember me, this is a very common feature, that is, once you log in, you will not be logged in the 
    next time you come back.
- * Note: Shiro does not maintain users and maintain permissions; these require us to design/provide; then inject it into 
- Shiro through the appropriate interface.  
- How to start:  
- $ cd {your_project_folder_path}  
- $ ls //Check if you are in the same place with the pom.xml  
- and then type  
- $ mvn spring-boot:run
+ * Note: 
+   * Shiro does not maintain users and maintain permissions; these require us to design/provide; then inject it into 
+   Shiro through the appropriate interface.  
+   * How to start:  
+     * $ cd {your_project_folder_path}  
+     * $ ls //Check if you are in the same place with the pom.xml  
+     and then type  
+     * $ mvn spring-boot:run
+   * springboot project how to identify webapp folder:  
+   ![image text](images/webapp.png)
  
  
  
