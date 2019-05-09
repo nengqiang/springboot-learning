@@ -42,6 +42,12 @@
             <artifactId>rocketmq-client</artifactId>
             <version>3.5.7</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
     </dependencies>
 
     <!-- 这里用于支持 multi-catch 语句 -->

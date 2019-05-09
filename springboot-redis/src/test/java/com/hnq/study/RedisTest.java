@@ -3,6 +3,7 @@ package com.hnq.study;
 import com.alibaba.fastjson.JSON;
 import com.hnq.study.bean.Apple;
 import com.hnq.study.redis.RedisUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import static com.hnq.study.bean.Apple.Type.Red_Fuji;
 import static com.hnq.study.bean.Apple.Type.Huang_Yuanshuai;
@@ -33,6 +36,52 @@ public class RedisTest {
 
     @Autowired
     private RedisUtils redisUtils;
+
+    @Test
+    public void allMethodTest() throws InterruptedException {
+        String key = "test";
+        String value = "test_value";
+        // 写入缓存
+        redisUtils.set(key, value);
+        Assert.assertEquals(redisUtils.get(key), value);
+
+        String key1 = "test1";
+        String value1 = "test_value1";
+        // 写入缓存设置时效时间
+        redisUtils.set(key1, value1, 10L, TimeUnit.SECONDS);
+        Thread.sleep(5000);
+        Assert.assertEquals(redisUtils.get(key1), value1);
+        Thread.sleep(6000);
+        Assert.assertNull(redisUtils.get(key1));
+
+        // 批量删除对应的value
+        redisUtils.set(key1, value1);
+        redisUtils.remove(key, key1);
+        Assert.assertNull(redisUtils.get(key));
+        Assert.assertNull(redisUtils.get(key1));
+
+        // 批量删除key
+        redisUtils.removePattern(key);
+        redisUtils.removePattern(key1);
+        Assert.assertFalse(redisUtils.exists(key));
+        Assert.assertFalse(redisUtils.exists(key1));
+
+        // 集合添加
+        redisUtils.add(key, value);
+        redisUtils.add(key, value1);
+        Set<Object> sets = redisUtils.setMembers(key);
+        Assert.assertNotNull(sets);
+
+        // 有序集合添加
+        String key2 = "zSet";
+        redisUtils.zAdd(key2, 1, 1D);
+        redisUtils.zAdd(key2, 2, 2D);
+        redisUtils.zAdd(key2, 3, 3D);
+        redisUtils.zAdd(key2, 4, 4D);
+        Set<Object> sets1 = redisUtils.rangeByScore(key2, 2, 4);
+        Assert.assertNotNull(sets1);
+        redisUtils.remove(key, key2);
+    }
 
     @Test
     public void saveOneAppleTest() {

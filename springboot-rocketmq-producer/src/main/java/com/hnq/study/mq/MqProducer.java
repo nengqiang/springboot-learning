@@ -4,8 +4,10 @@ import com.alibaba.rocketmq.client.exception.MQBrokerException;
 import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
 import com.alibaba.rocketmq.client.producer.SendResult;
+import com.alibaba.rocketmq.client.producer.SendStatus;
 import com.alibaba.rocketmq.common.message.Message;
 import com.alibaba.rocketmq.remoting.exception.RemotingException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,21 +41,28 @@ public class MqProducer {
         producer.shutdown();
     }
 
-    public String send(Message message) {
-        String key = UUID.randomUUID().toString();
-        try {
-            message.setKeys(key);
-            SendResult sendResult = producer.send(message);
-            System.out.printf("===》已发送消息:[topic=%s, tag=%s, key=%s, message=%s]\n",
-                    message.getTopic(), message.getTags(), key, sendResult.toString());
-            return "已发送消息";
-        } catch (InterruptedException | RemotingException | MQClientException | MQBrokerException e) {
-            System.out.printf("==》发送消息失败:[length=%d, key=%s, body=%s]\n",
-                    message.getBody().length, key, new String(message.getBody(), StandardCharsets.UTF_8));
-            e.printStackTrace();
-            return "发送消息失败";
-        }
+    public boolean send(String body, String topic, String tag, String key) {
+        Message message = new Message(topic, tag, key, body.getBytes());
+        return send(message);
+    }
 
+    public boolean send(Message message) {
+        if (StringUtils.isBlank(message.getKeys())) {
+            message.setKeys(UUID.randomUUID().toString());
+        }
+        try {
+            SendResult sendResult = producer.send(message);
+            String prompt = String.format("===》已发送消息:[topic=%s, tag=%s, key=%s, info=%s]\n",
+                    message.getTopic(), message.getTags(), message.getKeys(), sendResult.toString());
+            System.out.println(prompt);
+            return sendResult.getSendStatus() == SendStatus.SEND_OK;
+        } catch (InterruptedException | RemotingException | MQClientException | MQBrokerException e) {
+            String prompt = String.format("==》发送消息失败:[length=%d, key=%s, body=%s]\n",
+                    message.getBody().length, message.getKeys(), new String(message.getBody(), StandardCharsets.UTF_8));
+            System.err.println(prompt);
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

@@ -3,7 +3,10 @@ package com.hnq.study.redis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +22,16 @@ public class RedisUtils {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private RedisConfig redisConfig;
+
+    private JedisPool jedisPool = null;
+
+    @PostConstruct
+    public void init() {
+        jedisPool = new JedisPool(redisConfig.getHost(), redisConfig.getPort());
+    }
 
     /**
      * 写入缓存
@@ -65,7 +78,7 @@ public class RedisUtils {
      */
     public void removePattern(final String pattern) {
         Set<Serializable> keys = redisTemplate.keys(pattern);
-        if (keys.size() > 0){
+        if (keys.size() > 0) {
             redisTemplate.delete(keys);
         }
     }
@@ -90,32 +103,30 @@ public class RedisUtils {
      * 读取缓存
      */
     public Object get(final String key) {
-        Object result;
         ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-        result = operations.get(key);
-        return result;
+        return operations.get(key);
     }
 
     /**
      * 哈希 添加
      */
-    public void hmSet(String key, Object hashKey, Object value){
+    public void hmSet(String key, Object hashKey, Object value) {
         HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
-        hash.put(key,hashKey,value);
+        hash.put(key, hashKey, value);
     }
 
     /**
      * 哈希获取数据
      */
-    public Object hmGet(String key, Object hashKey){
-        HashOperations<String, Object, Object>  hash = redisTemplate.opsForHash();
-        return hash.get(key,hashKey);
+    public Object hmGet(String key, Object hashKey) {
+        HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
+        return hash.get(key, hashKey);
     }
 
     /**
      * 列表添加
      */
-    public void lPush(String k, Object v){
+    public void lPush(String k, Object v) {
         ListOperations<String, Object> list = redisTemplate.opsForList();
         list.rightPush(k, v);
     }
@@ -123,15 +134,25 @@ public class RedisUtils {
     /**
      * 列表获取
      */
-    public List<Object> lRange(String k, long l, long l1){
+    public List<Object> lRange(String k, long l, long l1) {
         ListOperations<String, Object> list = redisTemplate.opsForList();
-        return list.range(k,l,l1);
+        return list.range(k, l, l1);
+    }
+
+    /**
+     * 获取List列表
+     */
+    public List<String> lRangeByJedis(String key, long start, long end){
+        Jedis jedis = jedisPool.getResource();
+        List<String> list = jedis.lrange(key, start, end);
+        jedis.close();
+        return list;
     }
 
     /**
      * 集合添加
      */
-    public void add(String key, Object value){
+    public void add(String key, Object value) {
         SetOperations<String, Object> set = redisTemplate.opsForSet();
         set.add(key, value);
     }
@@ -139,7 +160,7 @@ public class RedisUtils {
     /**
      * 集合获取
      */
-    public Set<Object> setMembers(String key){
+    public Set<Object> setMembers(String key) {
         SetOperations<String, Object> set = redisTemplate.opsForSet();
         return set.members(key);
     }
@@ -147,17 +168,17 @@ public class RedisUtils {
     /**
      * 有序集合添加
      */
-    public void zAdd(String key, Object value, double source){
+    public void zAdd(String key, Object value, double source) {
         ZSetOperations<String, Object> zSet = redisTemplate.opsForZSet();
-        zSet.add(key,value,source);
+        zSet.add(key, value, source);
     }
 
     /**
      * 有序集合获取
      */
-    public Set<Object> rangeByScore(String key, double source, double source1){
+    public Set<Object> rangeByScore(String key, double source, double source1) {
         ZSetOperations<String, Object> zSet = redisTemplate.opsForZSet();
         return zSet.rangeByScore(key, source, source1);
     }
-    
+
 }

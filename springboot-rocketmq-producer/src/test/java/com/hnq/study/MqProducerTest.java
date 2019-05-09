@@ -33,8 +33,7 @@ public class MqProducerTest {
             message.setTags(mqConfig.getTag());
             String bodyStr = "I'm producer, I send a message to you, do you receive it?";
             message.setBody(bodyStr.getBytes(StandardCharsets.UTF_8));
-            String result = mqProducer.send(message);
-            System.out.println(result);
+            mqProducer.send(message);
         } catch (Exception e) {
             System.out.println("发送测试失败");
             e.printStackTrace();
