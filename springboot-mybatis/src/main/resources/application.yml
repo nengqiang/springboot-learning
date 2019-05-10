@@ -22,3 +22,9 @@
 #mybatis:
 #  mapper-locations: classpath:sqlmap/**/*.xml
 #  type-aliases-package: com.hnq.study.dao.domain
+
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql

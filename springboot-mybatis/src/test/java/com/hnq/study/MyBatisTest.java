@@ -1,5 +1,7 @@
 package com.hnq.study;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hnq.study.dao.domain.Employee;
 import com.hnq.study.dao.domain.EmployeeCriteria;
 import com.hnq.study.dao.mapper.EmployeeMapper;
@@ -21,6 +23,21 @@ public class MyBatisTest {
 
     @Autowired
     private EmployeeMapper employeeMapper;
+
+    @Test
+    public void pageHelperTest() {
+        EmployeeCriteria example = new EmployeeCriteria();
+        EmployeeCriteria.Criteria criteria = example.createCriteria();
+
+        criteria.andEmailLike("%gmail%");
+
+        PageHelper.startPage(1, 10);
+
+        List<Employee> employees =  employeeMapper.selectByExample(example);
+
+        PageInfo<Employee> pageInfo = new PageInfo<>(employees);
+        pageInfo.getList().forEach(System.out::println);
+    }
 
     @Test
     public void insertDeleteUpdateFindTest() {
