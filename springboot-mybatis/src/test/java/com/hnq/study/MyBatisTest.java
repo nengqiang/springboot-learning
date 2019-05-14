@@ -31,11 +31,17 @@ public class MyBatisTest {
 
         criteria.andEmailLike("%gmail%");
 
-        PageHelper.startPage(1, 10);
+        // PageHelper.startPage(1, 5);要放在查询语句的前面
+        // PageHelper.startPage(1, 10);只对该语句以后的第一个查询语句得到的数据进行分页,如果有两条查询语句，只对第一条查询语句生效
+        PageHelper.startPage(1, 5);
 
-        List<Employee> employees =  employeeMapper.selectByExample(example);
+        PageInfo<Employee> pageInfo = new PageInfo<>(employeeMapper.selectByExample(example));
+        System.out.println(">>> 第一页的5条数据：");
+        pageInfo.getList().forEach(System.out::println);
 
-        PageInfo<Employee> pageInfo = new PageInfo<>(employees);
+        PageHelper.startPage(2, 5);
+        pageInfo = new PageInfo<>(employeeMapper.selectByExample(example));
+        System.out.println(">>> 第二页的5条数据：");
         pageInfo.getList().forEach(System.out::println);
     }
 
