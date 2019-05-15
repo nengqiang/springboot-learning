@@ -92,6 +92,13 @@
      * $ mvn spring-boot:run
    * springboot project how to identify webapp folder:  
    ![image text](images/webapp.png)
+   
+### springboot-admin-server
+### springboot-admin-client
+ * Spring Boot Admin is a simple application to manage and monitor your Spring Boot Applications. The applications 
+ register with our Spring Boot Admin Client (via http) or are discovered using Spring Cloud (e.g. Eureka). 
+ The UI is just an Angular.js application on top of the Spring Boot Actuator endpoints. In case you want to use the 
+ more advanced features (e.g. jmx-, loglevel-management), Jolokia must be included in the client application.
  
  
  
