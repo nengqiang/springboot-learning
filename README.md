@@ -100,7 +100,12 @@
  The UI is just an Angular.js application on top of the Spring Boot Actuator endpoints. In case you want to use the 
  more advanced features (e.g. jmx-, loglevel-management), Jolokia must be included in the client application.
  
- 
+ ### springboot-elastic-job 
+  * Elastic-Job is a distributed scheduling solution consisting of two separate projects, Lite and Cloud.
+  * Elastic-Job-Lite is a lightweight, decentralized solution that provides distributed task sharding services.
+  Elastic-Job-Cloud is a Mesos Framework which which provides additional resource management, App distribution,
+  process isolation and task aggregation features.  
+ [source and quick start](https://github.com/elasticjob/elastic-job-lite)
  
  
  
