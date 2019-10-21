@@ -26,9 +26,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.5.241:3306/springboot_master"
+                        connectionURL="jdbc:mysql://dev:3306/springboot_master"
                         userId="root"
-                        password="dashu0701">
+                        password="">
         </jdbcConnection>
 
         <!-- 直接生成到对应目录下 -->

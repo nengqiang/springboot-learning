@@ -6,9 +6,9 @@
 
 	<bean id="dataSourceCluster" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://192.168.5.241:3306/springboot_cluster" />
+		<property name="url" value="jdbc:mysql://dev:3306/springboot_cluster" />
 		<property name="username" value="root" />
-		<property name="password" value="dashu0701" />
+		<property name="password" value="" />
 		<property name="initialSize" value="3" />
 		<property name="maxActive" value="30" />
 		<property name="maxIdle" value="5" />
