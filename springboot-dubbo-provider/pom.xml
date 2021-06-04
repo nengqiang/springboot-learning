@@ -24,7 +24,7 @@
         <com.alibaba.dubbo.vesion>2.5.3</com.alibaba.dubbo.vesion>
         <zkclient.version>0.5</zkclient.version>
         <logstash.version>4.4</logstash.version>
-        <httpclient.version>4.4.1</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
     </properties>
 
     <dependencies>
